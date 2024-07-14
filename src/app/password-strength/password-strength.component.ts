@@ -1,14 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-password-strength',
   templateUrl: './password-strength.component.html',
-  styleUrls: ['./password-strength.component.css']
+  styleUrls: ['./password-strength.component.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class PasswordStrengthComponent {
   passwordStrength: string = '';
 
-  checkPasswordStrength(password: string) {
+  checkPasswordStrength(event: Event) {
+    console.log((event.target as HTMLInputElement).value);
+    const password = ((event.target as HTMLInputElement).value)
+
     if (password.length === 0) {
       this.passwordStrength = '';
     } else if (password.length < 8) {
